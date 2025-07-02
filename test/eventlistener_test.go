@@ -495,7 +495,7 @@ func TestEventListenerCreate(t *testing.T) {
 
 	fmt.Printf("\nEventListener spec before create: %+v\n", el.Spec)
 
-	if el.Spec.Resources != nil && el.Spec.Resources.KubernetesResource != nil {
+	if el.Spec.Resources.KubernetesResource != nil {
     		fmt.Printf("\nel.Spec.Resources.KubernetesResource.ServiceType: %v", el.Spec.Resources.KubernetesResource.ServiceType)
     		if el.Spec.Resources.KubernetesResource.ServicePort != nil {
         		fmt.Printf("\nel.Spec.Resources.KubernetesResource.ServicePort: %v", *el.Spec.Resources.KubernetesResource.ServicePort)
@@ -503,8 +503,9 @@ func TestEventListenerCreate(t *testing.T) {
         		fmt.Println("\nServicePort is nil")
     		}
 	} else {
-    		fmt.Println("\nResources or KubernetesResource is nil")
+    		fmt.Println("\nKubernetesResource is nil")
 	}
+
 
 	// fmt.Printf("\nel.Spec.Resources.KubernetesResource.ServiceType: %v", el.Spec.Resources.KubernetesResource.ServiceType)
 	// fmt.Printf("\nel.Spec.Resources.KubernetesResource.ServicePort: %v", *el.Spec.Resources.KubernetesResource.ServicePort)
