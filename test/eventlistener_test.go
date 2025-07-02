@@ -493,8 +493,23 @@ func TestEventListenerCreate(t *testing.T) {
 		}
 	}
 
-	fmt.Printf("\nel.Spec.Resources.KubernetesResource.ServiceType: %v", el.Spec.Resources.KubernetesResource.ServiceType)
-	fmt.Printf("\nel.Spec.Resources.KubernetesResource.ServicePort: %v", *el.Spec.Resources.KubernetesResource.ServicePort)
+	fmt.Printf("\nEventListener spec before create: %+v\n", el.Spec)
+
+	if el.Spec.Resources != nil && el.Spec.Resources.KubernetesResource != nil {
+    		fmt.Printf("\nel.Spec.Resources.KubernetesResource.ServiceType: %v", el.Spec.Resources.KubernetesResource.ServiceType)
+    		if el.Spec.Resources.KubernetesResource.ServicePort != nil {
+        		fmt.Printf("\nel.Spec.Resources.KubernetesResource.ServicePort: %v", *el.Spec.Resources.KubernetesResource.ServicePort)
+    		} 
+		else {
+        		fmt.Println("\nServicePort is nil")
+    		}
+	}
+	else {
+    		fmt.Println("\nResources or KubernetesResource is nil")
+	}
+
+	// fmt.Printf("\nel.Spec.Resources.KubernetesResource.ServiceType: %v", el.Spec.Resources.KubernetesResource.ServiceType)
+	// fmt.Printf("\nel.Spec.Resources.KubernetesResource.ServicePort: %v", *el.Spec.Resources.KubernetesResource.ServicePort)
 
 	// Send POST request to EventListener sink
 	var resp *http.Response
